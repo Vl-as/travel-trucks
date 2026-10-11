@@ -1,12 +1,9 @@
-import Link, { LinkProps } from 'next/link';
+import Link from 'next/link';
 import css from './LinkButton.module.css';
-import { ReactNode } from 'react';
+import { ComponentProps } from 'react';
 import clsx from 'clsx';
 
-interface LinkButtonProps extends LinkProps {
-  children: ReactNode;
-  className?: string;
-}
+type LinkButtonProps = ComponentProps<typeof Link>;
 
 function LinkButton({ href, className, children, ...props }: LinkButtonProps) {
   return (
