@@ -1,0 +1,12 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--inputs);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,27 @@
+.hero {
+  padding-top: 267px;
+  height: 100dvh;
+  background-image: image-set(
+    url('/main-bg.webp') 1x,
+    url('/main-bg@2x.webp') 2x
+  );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 0.66667;
+  color: var(--inputs);
+}
+
+.subtitle {
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--inputs);
+}
