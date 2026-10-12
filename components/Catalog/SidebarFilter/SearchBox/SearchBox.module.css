@@ -1,0 +1,54 @@
+.label {
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.input {
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  padding: 0 20px 0 48px;
+  width: 100%;
+  min-height: 56px;
+  background-color: var(--white);
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.input::placeholder {
+  color: var(--gray);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.icon {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  fill: var(--gray);
+
+  pointer-events: none;
+  transition: fill 0.2s;
+}
+
+.input:focus-visible ~ .icon {
+  fill: var(--main);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .input:hover ~ .icon {
+    fill: var(--main);
+  }
+}
