@@ -6,27 +6,33 @@ import SearchBox from './SearchBox/SearchBox';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 import { SubmitEvent } from 'react';
-import { Filters } from '@/types/filters';
+import { Filters, FiltersState } from '@/types/filters';
 
 interface SidebarFilterProps {
   filters: Filters;
+  setFiltersState: (value: FiltersState) => void;
 }
 
-function SidebarFilter({ filters }: SidebarFilterProps) {
+function SidebarFilter({ filters, setFiltersState }: SidebarFilterProps) {
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const form = formData.get('form') as string;
-    const engine = formData.get('engine') as string;
-    const transmission = formData.get('transmission') as string;
-    const location = formData.get('location') as string;
+    const form = formData.get('form')?.toString() ?? null;
+    const engine = formData.get('engine')?.toString() ?? null;
+    const transmission = formData.get('transmission')?.toString() ?? null;
+    const location = formData.get('location')?.toString() ?? null;
 
-    console.log(formData);
-    console.log(form);
-    console.log(engine);
-    console.log(transmission);
-    console.log(location);
+    setFiltersState({ location, engine, form, transmission });
   };
+
+  function handleReset() {
+    setFiltersState({
+      location: null,
+      engine: null,
+      form: null,
+      transmission: null,
+    });
+  }
 
   return (
     <aside className={css.aside}>
@@ -54,7 +60,7 @@ function SidebarFilter({ filters }: SidebarFilterProps) {
         <Button className={css.searchButton} type="submit" primary>
           Search
         </Button>
-        <Button type="reset" secondary>
+        <Button type="reset" secondary onClick={handleReset}>
           <Icon className={css.icon} name="cross" width={24} height={24} />
           Clear filters
         </Button>

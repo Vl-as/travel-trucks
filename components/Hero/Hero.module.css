@@ -1,6 +1,7 @@
 .hero {
   padding-top: 267px;
-  height: 100dvh;
+  padding-bottom: 100px;
+  min-height: 100dvh;
   background-image: image-set(
     url('/main-bg.webp') 1x,
     url('/main-bg@2x.webp') 2x

@@ -8,6 +8,7 @@ interface ButtonProps {
   className?: string;
   primary?: boolean;
   secondary?: boolean;
+  onClick?: () => void;
 }
 
 function Button({
@@ -16,9 +17,11 @@ function Button({
   className,
   primary,
   secondary,
+  onClick,
 }: ButtonProps) {
   return (
     <button
+      onClick={onClick}
       className={clsx(
         css.button,
         className,
