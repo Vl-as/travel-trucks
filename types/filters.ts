@@ -10,3 +10,10 @@ export interface FiltersState {
   engine: null | string;
   transmission: null | string;
 }
+
+export const initialFiltersState: FiltersState = {
+  location: null,
+  form: null,
+  transmission: null,
+  engine: null,
+};

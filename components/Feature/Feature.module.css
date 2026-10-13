@@ -1,0 +1,18 @@
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 100px;
+  padding: 0 12px;
+  min-height: 48px;
+  background-color: var(--badges);
+  mix-blend-mode: multiply;
+
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--main);
+}

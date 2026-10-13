@@ -1,37 +1,57 @@
 'use client';
 
-import { Filters, FiltersState } from '@/types/filters';
-import css from './Catalog.modulle.css';
+import { Filters, FiltersState, initialFiltersState } from '@/types/filters';
+import css from './Catalog.module.css';
 import SidebarFilter from './SidebarFilter/SidebarFilter';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { fetchCampers } from '@/services/campers';
 import CamperList from './CamperList/CamperList';
 import { useState } from 'react';
+import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 
 interface CatalogProps {
   filters: Filters;
 }
 
 function Catalog({ filters }: CatalogProps) {
-  const [filtersState, setFiltersState] = useState<FiltersState>({
-    location: null,
-    form: null,
-    transmission: null,
-    engine: null,
-  });
+  const [filtersState, setFiltersState] =
+    useState<FiltersState>(initialFiltersState);
 
-  const { data } = useQuery({
-    queryKey: ['campers', filtersState],
-    queryFn: () => fetchCampers(filtersState),
-  });
-  const locations = [...new Set(data?.campers.map(camper => camper.location))];
-  console.log(locations);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
+    useInfiniteQuery({
+      queryKey: ['campers', filtersState] as const,
+      queryFn: ({ queryKey, pageParam }) => {
+        const [, currentFiltersState] = queryKey;
+        return fetchCampers(currentFiltersState, pageParam);
+      },
+      initialPageParam: 1,
+      placeholderData: keepPreviousData,
+      gcTime: 0,
+      getNextPageParam: lastResponse => {
+        const nextPage = lastResponse.page + 1;
+        return nextPage <= lastResponse.totalPages ? nextPage : undefined;
+      },
+      select: data => {
+        return {
+          ...data,
+          campers: data.pages.flatMap(page => page.campers),
+        };
+      },
+    });
+  const campers = data?.campers ?? [];
+  const hasCampers = campers.length > 0;
 
   return (
-    <section>
-      <SidebarFilter filters={filters} setFiltersState={setFiltersState} />
-      {data && (
-        <CamperList campers={data.campers} totalPages={data.totalPages} />
+    <section className={css.catalog}>
+      <SidebarFilter filters={filters} onFiltersChange={setFiltersState} />
+      {isFetching && <LoadingOverlay />}
+      {hasCampers && (
+        <CamperList
+          campers={campers}
+          onLoadMore={() => fetchNextPage()}
+          hasNextPage={hasNextPage}
+          isLoadingMore={isFetchingNextPage}
+        />
       )}
     </section>
   );

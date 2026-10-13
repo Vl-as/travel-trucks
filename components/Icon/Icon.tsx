@@ -1,3 +1,6 @@
+import clsx from 'clsx';
+import css from './Icon.module.css';
+
 interface IconProps {
   name: string;
   className?: string;
@@ -7,7 +10,12 @@ interface IconProps {
 
 function Icon({ name, className, width = 20, height = 20 }: IconProps) {
   return (
-    <svg width={width} height={height} className={className} aria-hidden="true">
+    <svg
+      width={width}
+      height={height}
+      className={clsx(css.icon, className)}
+      aria-hidden="true"
+    >
       <use href={`/sprite.svg#icon-${name}`} />
     </svg>
   );

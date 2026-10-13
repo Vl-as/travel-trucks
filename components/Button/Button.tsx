@@ -1,35 +1,20 @@
-import { ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import css from './Button.module.css';
 import clsx from 'clsx';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  type: 'button' | 'submit' | 'reset';
-  className?: string;
-  primary?: boolean;
-  secondary?: boolean;
-  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
 }
 
 function Button({
   children,
-  type,
+  variant = 'primary',
   className,
-  primary,
-  secondary,
-  onClick,
+  ...props
 }: ButtonProps) {
   return (
-    <button
-      onClick={onClick}
-      className={clsx(
-        css.button,
-        className,
-        primary && css.primary,
-        secondary && css.secondary
-      )}
-      type={type}
-    >
+    <button className={clsx(css.button, css[variant], className)} {...props}>
       {children}
     </button>
   );

@@ -1,18 +1,46 @@
 import { Camper } from '@/types/camper';
 import css from './CamperList.module.css';
+import CamperCard from './CamperCard/CamperCard';
+import Button from '@/components/Button/Button';
 
 interface CamperListProps {
   campers: Camper[];
-  totalPages: number;
+  onLoadMore: () => void;
+  hasNextPage: boolean;
+  isLoadingMore: boolean;
 }
 
-function CamperList({ campers, totalPages }: CamperListProps) {
+function CamperList({
+  campers,
+  onLoadMore,
+  hasNextPage,
+  isLoadingMore,
+}: CamperListProps) {
   return (
-    <ul>
-      {campers.map(camper => (
-        <li key={camper.id}>{camper.name}</li>
-      ))}
-    </ul>
+    <div className={css.wrapper}>
+      <ul className={css.list}>
+        {campers.map(camper => (
+          <CamperCard key={camper.id} camper={camper} />
+        ))}
+      </ul>
+      {hasNextPage && (
+        <Button
+          className={css.button}
+          type="button"
+          variant="secondary"
+          onClick={onLoadMore}
+          disabled={isLoadingMore}
+        >
+          {isLoadingMore ? (
+            <>
+              Loading <span className={css.loader} aria-label="Loading"></span>
+            </>
+          ) : (
+            'Load more'
+          )}
+        </Button>
+      )}
+    </div>
   );
 }
 

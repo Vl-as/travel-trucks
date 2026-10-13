@@ -1,3 +1,7 @@
+.wrapper {
+  border: none;
+}
+
 .title {
   margin-bottom: 8px;
   font-weight: 400;

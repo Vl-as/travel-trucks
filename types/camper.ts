@@ -3,6 +3,7 @@ export interface Camper {
   name: string;
   price: number;
   rating: number;
+  description: string;
   location: string;
   form: string;
   length: string;

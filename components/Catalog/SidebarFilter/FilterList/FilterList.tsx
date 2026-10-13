@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import RadioButton from '../RadioButton/RadioButton';
 import css from './FilterList.module.css';
 
@@ -10,14 +11,14 @@ interface FilterListProps {
 
 function FilterList({ title, filters, name, className }: FilterListProps) {
   return (
-    <div className={className}>
-      <h3 className={css.title}>{title}</h3>
+    <fieldset className={clsx(css.wrapper, className)}>
+      <legend className={css.title}>{title}</legend>
       <ul className={css.list}>
         {filters.map(option => (
           <RadioButton key={option} option={option} name={name} />
         ))}
       </ul>
-    </div>
+    </fieldset>
   );
 }
 
