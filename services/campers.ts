@@ -25,3 +25,9 @@ export async function fetchCampers(
 
   return data;
 }
+
+export async function getSingleCamper(id: string): Promise<Camper> {
+  const { data } = await api.get<Camper>(`/${id}`);
+
+  return data;
+}

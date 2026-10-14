@@ -1,0 +1,17 @@
+.page {
+  padding: 136px 0;
+}
+
+.topWrapper {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.gallery {
+  max-width: 638px;
+}
+
+.summary {
+  margin-bottom: 16px;
+}

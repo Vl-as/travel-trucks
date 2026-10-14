@@ -40,11 +40,19 @@ function Catalog({ filters }: CatalogProps) {
     });
   const campers = data?.campers ?? [];
   const hasCampers = campers.length > 0;
+  const showLoadingOverlay = isFetching && !isFetchingNextPage;
 
   return (
     <section className={css.catalog}>
       <SidebarFilter filters={filters} onFiltersChange={setFiltersState} />
-      {isFetching && <LoadingOverlay />}
+      {showLoadingOverlay && (
+        <LoadingOverlay>
+          <h3 className={css.loaderTitle}>Loading tracks...</h3>
+          <p className={css.loaderText}>
+            Please wait while we fetch the best travel trucks for you
+          </p>
+        </LoadingOverlay>
+      )}
       {hasCampers && (
         <CamperList
           campers={campers}

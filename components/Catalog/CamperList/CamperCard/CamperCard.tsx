@@ -5,6 +5,7 @@ import LinkButton from '@/components/LinkButton/LinkButton';
 import { Camper } from '@/types/camper';
 import Feature from '@/components/Feature/Feature';
 import { formatValue } from '@/utils/formatters';
+import CamperMeta from '@/components/CamperMeta/CamperMeta';
 
 interface CamperCardProps {
   camper: Camper;
@@ -31,19 +32,7 @@ function CamperCard({ camper }: CamperCardProps) {
           <h3 className={css.title}>{camper.name}</h3>
           <p className={css.price}>€{camper.price}</p>
         </div>
-        <div className={css.meta}>
-          <p className={css.rating}>
-            <Icon className={css.iconStar} name="star" width={16} height={16} />
-            <span>
-              {camper.rating}({camper.totalReviews}{' '}
-              {camper.totalReviews > 1 ? 'Reviews' : 'Review'})
-            </span>
-          </p>
-          <p className={css.location}>
-            <Icon className={css.iconMap} name="map" width={16} height={16} />
-            {camper.location}
-          </p>
-        </div>
+        <CamperMeta {...camper} className={css.meta} />
         <p className={css.description} title={camper.description}>
           {camper.description}
         </p>

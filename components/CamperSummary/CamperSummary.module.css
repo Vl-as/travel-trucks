@@ -1,0 +1,26 @@
+.card {
+  width: 100%;
+  border-radius: 16px;
+  padding: 24px;
+  background-color: var(--inputs);
+}
+
+.name {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
+}
+
+.meta {
+  margin-bottom: 16px;
+}
+
+.price {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--main);
+}
