@@ -41,7 +41,7 @@ function Gallery({ gallery, name, className }: GalleryProps) {
               alt={`${name} image`}
               fill
               sizes="(max-width: 638px) 100vw, 638px"
-              quality={100}
+              quality={90}
               priority={index === 0}
             />
           </SwiperSlide>

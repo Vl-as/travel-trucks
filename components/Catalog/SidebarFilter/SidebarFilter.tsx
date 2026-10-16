@@ -52,17 +52,26 @@ function SidebarFilter({ filters, filterState }: SidebarFilterProps) {
   };
 
   const handleClear = () => {
-    queryClient.removeQueries({ queryKey: ['campers'] });
-
-    router.replace('/catalog', {
-      scroll: false,
-    });
+    const hasAppliedFilters =
+      filterState.location ||
+      filterState.engine ||
+      filterState.form ||
+      filterState.transmission;
 
     setDraftFilters({
       location: '',
       engine: null,
       form: null,
       transmission: null,
+    });
+
+    if (!hasAppliedFilters) {
+      return;
+    }
+    queryClient.removeQueries({ queryKey: ['campers'] });
+
+    router.replace('/catalog', {
+      scroll: false,
     });
   };
 
