@@ -1,0 +1,47 @@
+.card {
+  border-radius: 16px;
+  padding: 16px;
+  background-color: var(--inputs);
+}
+
+.header {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--white);
+
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--grey-green);
+}
+
+.authorName {
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: var(--main);
+}
+
+.starList {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.iconStarEmpty {
+  fill: var(--gray-light);
+}
+
+.iconStarActive {
+  fill: var(--rating);
+}

@@ -19,8 +19,8 @@ function CamperList({
   return (
     <div className={css.wrapper}>
       <ul className={css.list}>
-        {campers.map(camper => (
-          <CamperCard key={camper.id} camper={camper} />
+        {campers.map((camper, index) => (
+          <CamperCard key={camper.id} camper={camper} index={index} />
         ))}
       </ul>
       {hasNextPage && (

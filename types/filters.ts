@@ -5,14 +5,14 @@ export interface Filters {
 }
 
 export interface FiltersState {
-  location: null | string;
+  location: string;
   form: null | string;
   engine: null | string;
   transmission: null | string;
 }
 
 export const initialFiltersState: FiltersState = {
-  location: null,
+  location: '',
   form: null,
   transmission: null,
   engine: null,

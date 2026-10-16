@@ -3,9 +3,11 @@ import css from './SearchBox.module.css';
 
 interface SearchBoxProps {
   className?: string;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-function SearchBox({ className }: SearchBoxProps) {
+function SearchBox({ className, value, onChange }: SearchBoxProps) {
   return (
     <div className={className}>
       <label className={css.label} htmlFor="location">
@@ -18,6 +20,8 @@ function SearchBox({ className }: SearchBoxProps) {
           placeholder="City"
           name="location"
           id="location"
+          value={value}
+          onChange={e => onChange(e.target.value)}
         />
         <Icon className={css.icon} name="map" aria-hidden="true" />
       </div>

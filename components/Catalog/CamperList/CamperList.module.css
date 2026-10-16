@@ -12,7 +12,8 @@
 
 .button {
   margin: 0 auto;
-  max-width: 145px;
+  min-width: 145px;
+  width: fit-content;
 }
 
 .button span {

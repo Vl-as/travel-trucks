@@ -26,8 +26,12 @@ export async function fetchCampers(
   return data;
 }
 
-export async function getSingleCamper(id: string): Promise<Camper> {
-  const { data } = await api.get<Camper>(`/${id}`);
+export async function getSingleCamper(id: string): Promise<Camper | null> {
+  try {
+    const { data } = await api.get<Camper>(`/${id}`);
 
-  return data;
+    return data;
+  } catch {
+    return null;
+  }
 }

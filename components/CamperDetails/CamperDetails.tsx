@@ -1,21 +1,35 @@
 import css from './CamperDetails.module.css';
 import Feature from '../Feature/Feature';
-import { formatValue } from '@/utils/formatters';
+import { formatMeasurement, formatValue } from '@/utils/formatters';
+import { Camper } from '@/types/camper';
 
 interface CamperDetailsProps {
-  transmission: string;
-  engine: string;
-  form: string;
-  amenities: string[];
+  camper: Camper;
 }
 
 function CamperDetails({
-  amenities,
-  transmission,
-  engine,
-  form,
+  camper: {
+    transmission,
+    engine,
+    amenities,
+    form,
+    length,
+    width,
+    height,
+    tank,
+    consumption,
+  },
 }: CamperDetailsProps) {
   const features = [transmission, engine, ...amenities];
+  const specifications = [
+    { label: 'Form', value: form },
+    { label: 'Length', value: length },
+    { label: 'Width', value: width },
+    { label: 'Height', value: height },
+    { label: 'Tank', value: tank },
+    { label: 'Consumption', value: consumption },
+  ];
+
   return (
     <div className={css.card}>
       <h2 className={css.title}>Vehicle details</h2>
@@ -26,6 +40,16 @@ function CamperDetails({
         })}
       </ul>
       <div className={css.divider}></div>
+      <ul className={css.specificationsList}>
+        {specifications.map(({ label, value }) => (
+          <li key={label} className={css.specification}>
+            <span>{label}</span>
+            <span className={css.specificationValue}>
+              {formatMeasurement(value)}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

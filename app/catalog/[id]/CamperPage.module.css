@@ -3,9 +3,9 @@
 }
 
 .topWrapper {
+  margin-bottom: 88px;
   display: flex;
   gap: 24px;
-  align-items: flex-start;
 }
 
 .gallery {
@@ -14,4 +14,13 @@
 
 .summary {
   margin-bottom: 16px;
+}
+
+.bottomWrapper {
+  display: flex;
+  gap: 48px;
+}
+
+.reviews {
+  max-width: 623px;
 }

@@ -34,13 +34,14 @@ function Gallery({ gallery, name, className }: GalleryProps) {
         className={css.previewBox}
       >
         {gallery.map((image, index) => (
-          <SwiperSlide key={image.id}>
+          <SwiperSlide key={`original-${image.id}`}>
             <Image
               className={css.image}
               src={image.original}
               alt={`${name} image`}
               fill
-              sizes="505px"
+              sizes="(max-width: 638px) 100vw, 638px"
+              quality={100}
               priority={index === 0}
             />
           </SwiperSlide>
@@ -57,7 +58,7 @@ function Gallery({ gallery, name, className }: GalleryProps) {
         className={css.swiperList}
       >
         {gallery.map(image => (
-          <SwiperSlide key={image.id} className={css.imageBox}>
+          <SwiperSlide key={`thumb-${image.id}`} className={css.imageBox}>
             <Image
               className={css.image}
               src={image.thumb}

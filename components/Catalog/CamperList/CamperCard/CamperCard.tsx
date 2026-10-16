@@ -9,13 +9,18 @@ import CamperMeta from '@/components/CamperMeta/CamperMeta';
 
 interface CamperCardProps {
   camper: Camper;
+  index: number;
 }
 
-function CamperCard({ camper }: CamperCardProps) {
+function CamperCard({ camper, index }: CamperCardProps) {
   const features = [
-    { icon: 'gas', value: formatValue(camper.engine) },
-    { icon: 'automatic', value: formatValue(camper.transmission) },
-    { icon: 'car', value: formatValue(camper.form) },
+    { id: 'engine', icon: camper.engine, value: formatValue(camper.engine) },
+    {
+      id: 'transmission',
+      icon: camper.transmission,
+      value: formatValue(camper.transmission),
+    },
+    { id: 'form', icon: camper.form, value: formatValue(camper.form) },
   ];
 
   return (
@@ -26,6 +31,7 @@ function CamperCard({ camper }: CamperCardProps) {
         alt={camper.name}
         width={219}
         height={240}
+        priority={index === 0}
       />
       <div className={css.content}>
         <div className={css.contentHeader}>
@@ -37,8 +43,8 @@ function CamperCard({ camper }: CamperCardProps) {
           {camper.description}
         </p>
         <ul className={css.features}>
-          {features.map(({ icon, value }) => (
-            <Feature key={icon}>
+          {features.map(({ icon, value, id }) => (
+            <Feature key={id}>
               <Icon aria-hidden="true" width={20} height={20} name={icon} />
               {value}
             </Feature>
