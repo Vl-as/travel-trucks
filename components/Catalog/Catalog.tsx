@@ -3,10 +3,16 @@
 import { Filters, FiltersState } from '@/types/filters';
 import css from './Catalog.module.css';
 import SidebarFilter from './SidebarFilter/SidebarFilter';
-import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useInfiniteQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { fetchCampers } from '@/services/campers';
 import CamperList from './CamperList/CamperList';
 import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
+import { useRouter } from 'next/navigation';
+import NotFoundCampers from './NotFoundCampers/NotFoundCampers';
 
 interface CatalogProps {
   filters: Filters;
@@ -14,20 +20,69 @@ interface CatalogProps {
 }
 
 function Catalog({ filters, selectedFilters }: CatalogProps) {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
-    useInfiniteQuery({
-      queryKey: ['campers', selectedFilters] as const,
-      queryFn: ({ queryKey, pageParam }) => {
-        const [, currentFiltersState] = queryKey;
-        return fetchCampers(currentFiltersState, pageParam);
-      },
-      initialPageParam: 1,
-      placeholderData: keepPreviousData,
-      getNextPageParam: lastResponse => {
-        const nextPage = lastResponse.page + 1;
-        return nextPage <= lastResponse.totalPages ? nextPage : undefined;
-      },
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    isLoading,
+  } = useInfiniteQuery({
+    queryKey: ['campers', selectedFilters] as const,
+    queryFn: ({ queryKey, pageParam }) => {
+      const [, currentFiltersState] = queryKey;
+      return fetchCampers(currentFiltersState, pageParam);
+    },
+    initialPageParam: 1,
+    placeholderData: keepPreviousData,
+    getNextPageParam: lastResponse => {
+      const nextPage = lastResponse.page + 1;
+      return nextPage <= lastResponse.totalPages ? nextPage : undefined;
+    },
+  });
+
+  const applyFilters = (draftFilters: FiltersState) => {
+    queryClient.removeQueries({ queryKey: ['campers'] });
+
+    const params = new URLSearchParams();
+
+    Object.entries(draftFilters).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      }
     });
+
+    router.replace(`/catalog?${params.toString()}`, {
+      scroll: false,
+    });
+  };
+
+  const clearAllValues = () => {
+    queryClient.removeQueries({ queryKey: ['campers'] });
+    router.replace('/catalog', {
+      scroll: false,
+    });
+  };
+
+  const clearOnlyFilters = () => {
+    queryClient.removeQueries({ queryKey: ['campers'] });
+    if (selectedFilters.location) {
+      router.replace(
+        `/catalog?location=${encodeURIComponent(selectedFilters.location)}`,
+        {
+          scroll: false,
+        }
+      );
+    } else {
+      router.replace('/catalog', {
+        scroll: false,
+      });
+    }
+  };
+
   const rawCampers = data?.pages.flatMap(page => page.campers) ?? [];
   const campers = rawCampers.filter(
     (camper, index, self) => self.findIndex(c => c.id === camper.id) === index
@@ -41,6 +96,8 @@ function Catalog({ filters, selectedFilters }: CatalogProps) {
         filters={filters}
         filterState={selectedFilters}
         key={JSON.stringify(selectedFilters)}
+        onApply={applyFilters}
+        onClear={clearAllValues}
       />
       {showLoadingOverlay && (
         <LoadingOverlay>
@@ -50,13 +107,17 @@ function Catalog({ filters, selectedFilters }: CatalogProps) {
           </p>
         </LoadingOverlay>
       )}
-      {hasCampers && (
+      {hasCampers ? (
         <CamperList
           campers={campers}
           onLoadMore={() => fetchNextPage()}
           hasNextPage={hasNextPage}
           isLoadingMore={isFetchingNextPage}
         />
+      ) : (
+        !isLoading && (
+          <NotFoundCampers onClear={clearOnlyFilters} onView={clearAllValues} />
+        )
       )}
     </section>
   );

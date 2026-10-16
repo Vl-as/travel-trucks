@@ -3,11 +3,23 @@ import css from './LinkButton.module.css';
 import { ComponentProps } from 'react';
 import clsx from 'clsx';
 
-type LinkButtonProps = ComponentProps<typeof Link>;
+interface LinkButtonProps extends ComponentProps<typeof Link> {
+  variant?: string;
+}
 
-function LinkButton({ href, className, children, ...props }: LinkButtonProps) {
+function LinkButton({
+  href,
+  className,
+  children,
+  variant = 'primary',
+  ...props
+}: LinkButtonProps) {
   return (
-    <Link className={clsx(css.linkButton, className)} href={href} {...props}>
+    <Link
+      className={clsx(css.linkButton, css[variant], className)}
+      href={href}
+      {...props}
+    >
       {children}
     </Link>
   );

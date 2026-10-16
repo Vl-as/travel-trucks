@@ -7,18 +7,21 @@ import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 import { SyntheticEvent, useState } from 'react';
 import { Filters, FiltersState } from '@/types/filters';
-import { useRouter } from 'next/navigation';
-import { useQueryClient } from '@tanstack/react-query';
 
 interface SidebarFilterProps {
   filters: Filters;
   filterState: FiltersState;
+  onApply: (draftFilters: FiltersState) => void;
+  onClear: () => void;
 }
 
-function SidebarFilter({ filters, filterState }: SidebarFilterProps) {
+function SidebarFilter({
+  filters,
+  filterState,
+  onApply,
+  onClear,
+}: SidebarFilterProps) {
   const [draftFilters, setDraftFilters] = useState(filterState);
-  const router = useRouter();
-  const queryClient = useQueryClient();
 
   const handleFilterChange = (name: keyof FiltersState, value: string) => {
     setDraftFilters(prev => ({
@@ -36,28 +39,20 @@ function SidebarFilter({ filters, filterState }: SidebarFilterProps) {
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    queryClient.removeQueries({ queryKey: ['campers'] });
+    const isChanged =
+      draftFilters.location !== filterState.location ||
+      draftFilters.engine !== filterState.engine ||
+      draftFilters.form !== filterState.form ||
+      draftFilters.transmission !== filterState.transmission;
 
-    const params = new URLSearchParams();
+    if (!isChanged) {
+      return;
+    }
 
-    Object.entries(draftFilters).forEach(([key, value]) => {
-      if (value) {
-        params.set(key, value);
-      }
-    });
-
-    router.replace(`/catalog?${params.toString()}`, {
-      scroll: false,
-    });
+    onApply(draftFilters);
   };
 
   const handleClear = () => {
-    const hasAppliedFilters =
-      filterState.location ||
-      filterState.engine ||
-      filterState.form ||
-      filterState.transmission;
-
     setDraftFilters({
       location: '',
       engine: null,
@@ -65,14 +60,16 @@ function SidebarFilter({ filters, filterState }: SidebarFilterProps) {
       transmission: null,
     });
 
+    const hasAppliedFilters =
+      filterState.location ||
+      filterState.engine ||
+      filterState.form ||
+      filterState.transmission;
+
     if (!hasAppliedFilters) {
       return;
     }
-    queryClient.removeQueries({ queryKey: ['campers'] });
-
-    router.replace('/catalog', {
-      scroll: false,
-    });
+    onClear();
   };
 
   return (

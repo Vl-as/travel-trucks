@@ -1,19 +1,27 @@
-function NotFound() {
-  return (
-    <>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
+import Container from '@/components/Container/Container';
+import css from './NotFound.module.css';
+import NotFound from '@/components/NotFound/NotFound';
+import LinkButton from '@/components/LinkButton/LinkButton';
 
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-      <h1>Not Found 404</h1>
-    </>
+function NotFoundPage() {
+  return (
+    <main className={css.main}>
+      <Container className={css.container}>
+        <NotFound
+          imgClass={css.image}
+          titleClass={css.title}
+          title="Page not found"
+        >
+          <div className={css.links}>
+            <LinkButton href="/">Go to home page</LinkButton>
+            <LinkButton variant="secondary" href="/catalog">
+              Explore campers
+            </LinkButton>
+          </div>
+        </NotFound>
+      </Container>
+    </main>
   );
 }
 
-export default NotFound;
+export default NotFoundPage;

@@ -1,0 +1,29 @@
+.main {
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1000px;
+}
+
+.image.image {
+  margin-bottom: 0;
+  width: 350px;
+  height: 350px;
+}
+
+.title.title {
+  margin-bottom: 26px;
+  font-size: 32px;
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}

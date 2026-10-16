@@ -10,24 +10,43 @@
   max-width: 173px;
   width: 100%;
 
-  background-color: var(--grey-green);
-
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.01em;
-  color: var(--white);
 
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
 }
 
-.linkButton:focus-visible,
-.linkButton:active {
+.primary {
+  background-color: var(--grey-green);
+  color: var(--white);
+}
+
+.secondary {
+  border: 1px solid var(--gray-light);
+  color: var(--main);
+  background-color: var(--white);
+}
+
+.secondary:focus-visible,
+.secondary:active {
+  border-color: var(--green-hover);
+}
+
+.primary:focus-visible,
+.primary:active {
   background-color: var(--green-hover);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .linkButton:hover {
+  .primary:hover {
     background-color: var(--green-hover);
+  }
+
+  .secondary:hover {
+    border-color: var(--green-hover);
   }
 }
