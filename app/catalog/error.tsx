@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/Button/Button';
+import css from './Error.module.css';
 
 interface ErrorProps {
   error: Error;
@@ -9,13 +10,15 @@ interface ErrorProps {
 
 function Error({ error, reset }: ErrorProps) {
   return (
-    <div>
-      <h2>Error loading</h2>
-      <p>{error.message}</p>
-      <Button type="button" onClick={reset}>
-        Try again
-      </Button>
-    </div>
+    <main className={css.main}>
+      <div className={css.card}>
+        <h2 className={css.title}>Error loading</h2>
+        <p className={css.text}>{error.message}</p>
+        <Button className={css.button} type="button" onClick={reset}>
+          Try again
+        </Button>
+      </div>
+    </main>
   );
 }
 

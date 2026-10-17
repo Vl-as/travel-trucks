@@ -1,0 +1,35 @@
+.main {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.card {
+  padding: 40px;
+  border-radius: 16px;
+  background-color: var(--inputs);
+  max-width: 650px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.33;
+  color: var(--main);
+  text-align: center;
+}
+
+.text {
+  margin-bottom: 16px;
+  color: var(--error);
+  text-align: center;
+}
+
+.button {
+  margin: 0 auto;
+  min-width: 145px;
+  width: auto;
+}
