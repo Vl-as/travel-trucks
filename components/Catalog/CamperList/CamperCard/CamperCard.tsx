@@ -25,14 +25,16 @@ function CamperCard({ camper, index }: CamperCardProps) {
 
   return (
     <li className={css.card}>
-      <Image
-        className={css.image}
-        src={camper.coverImage}
-        alt={camper.name}
-        width={219}
-        height={240}
-        priority={index === 0}
-      />
+      <div className={css.imageBox}>
+        <Image
+          className={css.image}
+          src={camper.coverImage}
+          alt={camper.name}
+          fill
+          sizes="219px"
+          priority={index === 0}
+        />
+      </div>
       <div className={css.content}>
         <div className={css.contentHeader}>
           <h3 className={css.title}>{camper.name}</h3>

@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import { bookCamper } from '@/services/booking';
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
+import Toast from '../Toast/Toast';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -43,11 +44,12 @@ function BookingForm({ camperId, className }: BookingFormProps) {
   const { mutate, isPending } = useMutation({
     mutationFn: bookCamper,
     onSuccess: data => {
-      toast.success(data.message);
+      toast(<Toast type="success" message={data.message} />);
     },
     onError: () => {
-      const errorMessage = 'Something went wrong. Try again later.';
-      toast.error(errorMessage);
+      toast(
+        <Toast type="error" message="Something went wrong. Try again later." />
+      );
     },
   });
 

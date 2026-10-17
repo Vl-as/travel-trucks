@@ -8,10 +8,19 @@
   background-color: var(--inputs);
 }
 
-.image {
+.imageBox {
   flex-shrink: 0;
+  position: relative;
   border-radius: 16px;
+  overflow: hidden;
+  width: 219px;
+  height: 240px;
+}
+
+.image {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .content {

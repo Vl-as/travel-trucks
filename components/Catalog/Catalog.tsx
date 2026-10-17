@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import NotFoundCampers from './NotFoundCampers/NotFoundCampers';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import Toast from '../Toast/Toast';
 
 interface CatalogProps {
   filters: Filters;
@@ -65,7 +66,12 @@ function Catalog({ filters, selectedFilters }: CatalogProps) {
 
   useEffect(() => {
     if (isError) {
-      toast.error('Failed to load campers list. Please try again.');
+      toast(
+        <Toast
+          type="error"
+          message="Failed to load campers list. Please try again."
+        />
+      );
     }
   }, [isError]);
 

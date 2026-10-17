@@ -4,7 +4,6 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import QueryProvider from '@/components/QueryProvider/QueryProvider';
 import { ToastContainer } from 'react-toastify';
-
 const inter = Inter({
   variable: '--font-family',
   subsets: ['latin'],
@@ -25,7 +24,17 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body>
-        <ToastContainer position="top-center" hideProgressBar={true} />
+        <ToastContainer
+          position="top-center"
+          hideProgressBar
+          closeButton={false}
+          toastStyle={{
+            padding: 0,
+            background: 'transparent',
+            boxShadow: 'none',
+            width: 'auto',
+          }}
+        />
         <QueryProvider>
           <Header />
           {children}

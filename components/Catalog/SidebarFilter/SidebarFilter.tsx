@@ -22,6 +22,12 @@ function SidebarFilter({
   onClear,
 }: SidebarFilterProps) {
   const [draftFilters, setDraftFilters] = useState(filterState);
+  const [prevFilterState, setPrevFilterState] = useState(filterState);
+
+  if (filterState !== prevFilterState) {
+    setPrevFilterState(filterState);
+    setDraftFilters(filterState);
+  }
 
   const handleFilterChange = (name: keyof FiltersState, value: string) => {
     setDraftFilters(prev => ({

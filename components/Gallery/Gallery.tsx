@@ -40,8 +40,7 @@ function Gallery({ gallery, name, className }: GalleryProps) {
               src={image.original}
               alt={`${name} image`}
               fill
-              sizes="(max-width: 638px) 100vw, 638px"
-              quality={90}
+              sizes="638px"
               priority={index === 0}
             />
           </SwiperSlide>
@@ -64,7 +63,7 @@ function Gallery({ gallery, name, className }: GalleryProps) {
               src={image.thumb}
               alt={`${name} image`}
               fill
-              sizes="135px"
+              sizes="100px"
             />
           </SwiperSlide>
         ))}
