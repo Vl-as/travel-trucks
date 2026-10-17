@@ -28,6 +28,7 @@
 .navLink.active {
   color: var(--grey-green);
   cursor: default;
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {

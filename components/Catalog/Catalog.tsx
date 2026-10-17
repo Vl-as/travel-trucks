@@ -13,6 +13,8 @@ import CamperList from './CamperList/CamperList';
 import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 import { useRouter } from 'next/navigation';
 import NotFoundCampers from './NotFoundCampers/NotFoundCampers';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 interface CatalogProps {
   filters: Filters;
@@ -30,6 +32,7 @@ function Catalog({ filters, selectedFilters }: CatalogProps) {
     isFetchingNextPage,
     isFetching,
     isLoading,
+    isError,
   } = useInfiniteQuery({
     queryKey: ['campers', selectedFilters] as const,
     queryFn: ({ queryKey, pageParam }) => {
@@ -59,6 +62,12 @@ function Catalog({ filters, selectedFilters }: CatalogProps) {
       scroll: false,
     });
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Failed to load campers list. Please try again.');
+    }
+  }, [isError]);
 
   const clearAllValues = () => {
     queryClient.removeQueries({ queryKey: ['campers'] });

@@ -1,24 +1,30 @@
 .gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+
+  width: 100%;
   user-select: none;
-  --swiper-navigation-color: var(--olive);
-  --swiper-pagination-color: var(--olive);
 }
 
 .previewBox :global(.swiper-button-prev),
 .previewBox :global(.swiper-button-next) {
-  width: 35px;
-  height: 80px;
+  width: 44px;
+  height: 64px;
   padding: 10px;
   border-radius: 20px;
-  background-color: var(--grey-green);
-  box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+  background-color: var(--white-90);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: var(--main);
 
   opacity: 0;
   pointer-events: none;
 
   transition:
-    opacity 0.4s,
-    transform 0.4s;
+    opacity 0.3s,
+    color 0.3s,
+    background-color 0.3s;
 }
 
 .previewBox :global(.swiper-button-prev) {
@@ -30,10 +36,9 @@
 }
 
 .previewBox {
-  margin-bottom: 27px;
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 4;
+  flex-grow: 1;
   border-radius: 17px;
   overflow: hidden;
 }
@@ -60,7 +65,7 @@
   border: 3px solid transparent;
   border-radius: 19px;
   cursor: pointer;
-  transition: border-color 0.4s;
+  transition: border-color 0.3s;
 }
 
 .swiperList :global(.swiper-slide-thumb-active) {
@@ -77,13 +82,14 @@
 
   .previewBox:hover :global(.swiper-button-prev),
   .previewBox:hover :global(.swiper-button-next) {
-    opacity: 0.6;
+    opacity: 0.5;
     pointer-events: auto;
   }
 
   .previewBox :global(.swiper-button-next):hover,
   .previewBox :global(.swiper-button-prev):hover {
     opacity: 1;
-    transform: scale(1.05);
+    background-color: var(--main);
+    color: var(--white);
   }
 }

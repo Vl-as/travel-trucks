@@ -1,0 +1,93 @@
+.input {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding-inline: 18px;
+  width: 100%;
+  min-height: 60px;
+  background-color: var(--inputs);
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+  outline: none;
+
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.input:not(.inputError):focus-visible,
+.input:not(.inputError):active {
+  border-color: var(--green-hover);
+}
+
+.input::placeholder {
+  color: var(--gray);
+}
+
+.error {
+  color: var(--button);
+}
+
+.inputError {
+  background-color: var(--error-bg);
+  border: 1px solid var(--button);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.errorIcon {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+
+  fill: var(--error);
+
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+
+  transition: opacity 0.2s;
+}
+
+.inputError ~ .errorIcon {
+  visibility: visible;
+  opacity: 1;
+}
+
+.errorLabel {
+  border-radius: 8px;
+  padding: 0 8px;
+  position: absolute;
+  top: 0;
+  left: 18px;
+  min-height: 16px;
+  background-color: var(--error-bg);
+
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--error);
+
+  transform: translateY(-50%);
+
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+
+  transition: opacity 0.2s;
+}
+
+.inputError ~ .errorLabel {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .input:not(.inputError):hover {
+    border-color: var(--green-hover);
+  }
+}

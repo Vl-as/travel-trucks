@@ -4,6 +4,7 @@ import Link from 'next/link';
 import css from './Navbar.module.css';
 import { clsx } from 'clsx';
 import { usePathname } from 'next/navigation';
+import { MouseEvent } from 'react';
 
 const navItems = [
   {
@@ -23,6 +24,9 @@ function Navbar() {
             <Link
               className={clsx(css.navLink, href === path && css.active)}
               href={href}
+              onClick={(e: MouseEvent<HTMLAnchorElement>) =>
+                href === path && e.preventDefault()
+              }
             >
               {label}
             </Link>

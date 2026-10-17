@@ -16,11 +16,8 @@
   width: fit-content;
 }
 
-.button span {
-  flex-shrink: 0;
-}
-
 .loader {
+  flex-shrink: 0;
   width: 20px;
   aspect-ratio: 1;
   border-radius: 50%;

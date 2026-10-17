@@ -3,6 +3,7 @@ import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header/Header';
 import QueryProvider from '@/components/QueryProvider/QueryProvider';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({
   variable: '--font-family',
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body>
+        <ToastContainer position="top-center" hideProgressBar={true} />
         <QueryProvider>
           <Header />
           {children}

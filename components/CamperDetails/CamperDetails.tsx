@@ -22,7 +22,7 @@ function CamperDetails({
 }: CamperDetailsProps) {
   const features = [transmission, engine, ...amenities];
   const specifications = [
-    { label: 'Form', value: form },
+    { label: 'Form', value: formatValue(form) },
     { label: 'Length', value: length },
     { label: 'Width', value: width },
     { label: 'Height', value: height },

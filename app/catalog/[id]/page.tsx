@@ -7,6 +7,7 @@ import Container from '@/components/Container/Container';
 import { getCamperReviews } from '@/services/reviews';
 import ReviewsBlock from '@/components/ReviewsBlock/ReviewsBlock';
 import { notFound } from 'next/navigation';
+import BookingForm from '@/components/BookingForm/BookingForm';
 
 interface CamperPageProps {
   params: Promise<{ id: string }>;
@@ -38,6 +39,7 @@ async function CamperPage({ params }: CamperPageProps) {
         </div>
         <div className={css.bottomWrapper}>
           <ReviewsBlock className={css.reviews} reviews={reviews} />
+          <BookingForm className={css.form} camperId={id} />
         </div>
       </Container>
     </main>

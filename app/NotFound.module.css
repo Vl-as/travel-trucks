@@ -18,6 +18,7 @@
 .title.title {
   margin-bottom: 26px;
   font-size: 32px;
+  color: var(--green-hover);
 }
 
 .links {

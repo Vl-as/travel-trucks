@@ -15,3 +15,7 @@
 .button {
   min-width: 192px;
 }
+
+.icon {
+  stroke: currentColor;
+}

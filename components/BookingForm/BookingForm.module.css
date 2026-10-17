@@ -1,0 +1,41 @@
+.formCard {
+  width: 100%;
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 44px 57px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+}
+
+.text {
+  margin-bottom: 24px;
+  color: var(--gray);
+}
+
+.inputsWrapper {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loader {
+  flex-shrink: 0;
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: var(--white) transparent;
+  animation: l1 1s infinite;
+}
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}

@@ -10,6 +10,7 @@
 
 .gallery {
   max-width: 638px;
+  flex-shrink: 0;
 }
 
 .summary {
@@ -19,8 +20,17 @@
 .bottomWrapper {
   display: flex;
   gap: 48px;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .reviews {
+  flex-shrink: 0;
   max-width: 623px;
+  width: 100%;
+}
+
+.form {
+  margin-top: 56px;
+  max-width: 641px;
 }

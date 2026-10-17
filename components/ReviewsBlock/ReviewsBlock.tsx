@@ -8,14 +8,25 @@ interface ReviewsBlockProps {
 }
 
 function ReviewsBlock({ reviews, className }: ReviewsBlockProps) {
+  const hasReviews = Boolean(reviews && reviews.length > 0);
   return (
     <article className={className}>
       <h2 className={css.title}>Reviews</h2>
-      <ul className={css.list}>
-        {reviews.map(review => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
-      </ul>
+      {hasReviews ? (
+        <ul className={css.list}>
+          {reviews.map(review => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
+        </ul>
+      ) : (
+        <div className={css.emptyReviewsCard}>
+          <p className={css.emptyTitle}>No reviews yet</p>
+          <p className={css.emptyText}>
+            Be the first to rent this campervan and share your travel experience
+            with others!
+          </p>
+        </div>
+      )}
     </article>
   );
 }
