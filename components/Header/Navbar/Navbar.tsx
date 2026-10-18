@@ -14,28 +14,28 @@ const navItems = [
   { label: 'Catalog', href: '/catalog' },
 ];
 
-interface NavbarProps{
+interface NavbarProps {
   className?: string;
 }
 
-function Navbar({className}: NavbarProps) {
+function Navbar({ className }: NavbarProps) {
   const path = usePathname();
   return (
     <nav className={clsx(css.nav, className)}>
       <ul className={css.navList}>
-        {navItems.map(({ label, href }) => (
-          <li key={href}>
-            <Link
-              className={clsx(css.navLink, href === path && css.active)}
-              href={href}
-              onClick={(e: MouseEvent<HTMLAnchorElement>) =>
-                href === path && e.preventDefault()
-              }
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
+        {navItems.map(({ label, href }) => {
+          const isActive = href === '/' ? path === '/' : path.startsWith(href);
+          return (
+            <li key={href}>
+              <Link
+                className={clsx(css.navLink, isActive && css.active)}
+                href={href}
+              >
+                {label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
