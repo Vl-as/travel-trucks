@@ -39,11 +39,11 @@
 }
 
 .iconStarEmpty {
-  fill: var(--gray-light);
+  color: var(--gray-light);
 }
 
 .iconStarActive {
-  fill: var(--rating);
+  color: var(--rating);
 }
 
 @media screen and (max-width: 479px) {

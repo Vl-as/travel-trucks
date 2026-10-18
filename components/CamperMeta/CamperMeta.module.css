@@ -5,7 +5,7 @@
 }
 
 .iconStar {
-  fill: var(--rating);
+  color: var(--rating);
 }
 
 .rating {
