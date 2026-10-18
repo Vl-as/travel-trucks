@@ -33,6 +33,7 @@ function CamperCard({ camper, index }: CamperCardProps) {
           fill
           sizes="219px"
           priority={index === 0}
+          loading={index === 0 ? 'eager' : 'lazy'}
         />
       </div>
       <div className={css.content}>
@@ -63,6 +64,7 @@ function CamperCard({ camper, index }: CamperCardProps) {
           className={css.link}
           href={`/catalog/${camper.id}`}
           target="_blank"
+          rel="noopener"
         >
           Show more
         </LinkButton>

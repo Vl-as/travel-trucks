@@ -10,6 +10,8 @@ import { ReactNode } from 'react';
 const inter = Inter({
   variable: '--font-family',
   subsets: ['latin'],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {

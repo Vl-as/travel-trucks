@@ -42,6 +42,7 @@ function Gallery({ gallery, name, className }: GalleryProps) {
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1023px) 60vw, 638px"
               priority={index === 0}
+              loading={index === 0 ? 'eager' : 'lazy'}
             />
           </SwiperSlide>
         ))}
