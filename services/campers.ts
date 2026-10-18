@@ -1,6 +1,7 @@
 import { Camper } from '@/types/camper';
 import { api } from './api';
 import { FiltersState } from '@/types/filters';
+import { cache } from 'react';
 
 interface CampersApiResponse {
   campers: Camper[];
@@ -26,12 +27,14 @@ export async function fetchCampers(
   return data;
 }
 
-export async function getSingleCamper(id: string): Promise<Camper | null> {
-  try {
-    const { data } = await api.get<Camper>(`/${id}`);
+export const getSingleCamper = cache(
+  async (id: string): Promise<Camper | null> => {
+    try {
+      const { data } = await api.get<Camper>(`/${id}`);
 
-    return data;
-  } catch {
-    return null;
+      return data;
+    } catch {
+      return null;
+    }
   }
-}
+);
