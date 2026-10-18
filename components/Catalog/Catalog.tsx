@@ -13,9 +13,12 @@ import CamperList from './CamperList/CamperList';
 import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 import { useRouter } from 'next/navigation';
 import NotFoundCampers from './NotFoundCampers/NotFoundCampers';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Toast from '../Toast/Toast';
+import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
+import clsx from 'clsx';
 
 interface CatalogProps {
   filters: Filters;
@@ -25,6 +28,8 @@ interface CatalogProps {
 function Catalog({ filters, selectedFilters }: CatalogProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
+
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const {
     data,
@@ -107,12 +112,27 @@ function Catalog({ filters, selectedFilters }: CatalogProps) {
 
   return (
     <section className={css.catalog}>
+      <Button
+        className={css.mobileFilterToggle}
+        onClick={() => setIsFiltersOpen(prev => !prev)}
+        type="button"
+        variant="secondary"
+      >
+        Filters
+        <Icon name="filter" width={20} height={20} />
+      </Button>
+      <div
+        className={clsx(css.backdrop, { [css.backdropOpen]: isFiltersOpen })}
+        onClick={() => setIsFiltersOpen(false)}
+      />
       <SidebarFilter
         filters={filters}
         filterState={selectedFilters}
         key={JSON.stringify(selectedFilters)}
         onApply={applyFilters}
         onClear={clearAllValues}
+        isOpen={isFiltersOpen}
+        onClose={() => setIsFiltersOpen(false)}
       />
       {showLoadingOverlay && (
         <LoadingOverlay>

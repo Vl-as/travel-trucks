@@ -31,3 +31,14 @@
   line-height: 1.5;
   color: var(--main);
 }
+
+@media screen and (max-width: 479px) {
+  .meta {
+    gap: 8px;
+  }
+
+  .rating,
+  .location {
+    font-size: 14px;
+  }
+}

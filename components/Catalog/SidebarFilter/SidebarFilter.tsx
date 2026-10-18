@@ -5,14 +5,17 @@ import FilterList from './FilterList/FilterList';
 import SearchBox from './SearchBox/SearchBox';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { Filters, FiltersState } from '@/types/filters';
+import clsx from 'clsx';
 
 interface SidebarFilterProps {
   filters: Filters;
   filterState: FiltersState;
   onApply: (draftFilters: FiltersState) => void;
   onClear: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 function SidebarFilter({
@@ -20,9 +23,25 @@ function SidebarFilter({
   filterState,
   onApply,
   onClear,
+  isOpen = false,
+  onClose,
 }: SidebarFilterProps) {
   const [draftFilters, setDraftFilters] = useState(filterState);
   const [prevFilterState, setPrevFilterState] = useState(filterState);
+
+  useEffect(() => {
+    const html = document.documentElement;
+
+    if (isOpen) {
+      html.classList.add('no-scroll');
+    } else {
+      html.classList.remove('no-scroll');
+    }
+
+    return () => {
+      html.classList.remove('no-scroll');
+    };
+  }, [isOpen]);
 
   if (filterState !== prevFilterState) {
     setPrevFilterState(filterState);
@@ -52,10 +71,12 @@ function SidebarFilter({
       draftFilters.transmission !== filterState.transmission;
 
     if (!isChanged) {
+      if (onClose) onClose();
       return;
     }
 
     onApply(draftFilters);
+    if (onClose) onClose();
   };
 
   const handleClear = () => {
@@ -76,10 +97,19 @@ function SidebarFilter({
       return;
     }
     onClear();
+    if (onClose) onClose();
   };
 
   return (
-    <aside className={css.aside}>
+    <aside className={clsx(css.aside, isOpen && css.isOpen)}>
+      <button
+        type="button"
+        className={css.closeButton}
+        onClick={onClose}
+        aria-label="Close filters"
+      >
+        <Icon className={css.iconCross} name="cross" width={24} height={24} />
+      </button>
       <form onSubmit={handleSubmit}>
         <SearchBox
           className={css.searchBox}

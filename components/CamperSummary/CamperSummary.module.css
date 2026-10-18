@@ -24,3 +24,35 @@
   line-height: 1.33;
   color: var(--main);
 }
+
+@media screen and (max-width: 767px) {
+  .card {
+    padding: 16px;
+  }
+
+  .name {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .meta {
+    margin-bottom: 12px;
+  }
+
+  .price {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .name,
+  .price {
+    font-size: 18px;
+  }
+}

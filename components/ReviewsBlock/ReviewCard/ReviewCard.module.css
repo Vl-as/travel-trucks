@@ -45,3 +45,30 @@
 .iconStarActive {
   fill: var(--rating);
 }
+
+@media screen and (max-width: 479px) {
+  .card {
+    padding: 12px;
+  }
+
+  .header {
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .authorName {
+    font-size: 15px;
+    word-break: break-word;
+  }
+
+  .comment {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}

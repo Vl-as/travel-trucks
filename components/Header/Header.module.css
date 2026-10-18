@@ -8,6 +8,27 @@
 }
 
 .container {
+  min-height: 72px;
+  position: relative;
   display: flex;
   align-items: center;
+  gap: calc(50% - 136px);
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    position: static;
+    transform: none;
+  }
+
+  .container {
+    justify-content: space-between;
+  }
 }

@@ -34,3 +34,72 @@
 .searchButton {
   margin-bottom: 16px;
 }
+
+.closeButton {
+  display: none;
+}
+
+@media screen and (max-width: 1399px) {
+  .aside {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .closeButton {
+    display: block;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--main);
+    padding: 4px;
+    z-index: 10;
+  }
+
+  .iconCross {
+    stroke: currentColor;
+  }
+
+  .aside {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    max-width: 375px;
+
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    background-color: var(--inputs);
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 4px 0px 24px rgba(0, 0, 0, 0.15);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--grey-green) transparent;
+
+    transition: left 0.3s ease-in-out;
+  }
+
+  .aside.isOpen {
+    left: 0;
+  }
+
+  .searchBox {
+    margin-top: 40px;
+    margin-bottom: 24px;
+  }
+
+  .filterList:last-of-type {
+    margin-bottom: 32px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .aside {
+    max-width: 100%;
+    border-radius: 0;
+  }
+}

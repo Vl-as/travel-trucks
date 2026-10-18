@@ -7,8 +7,8 @@
 
   border-radius: 200px;
   min-height: 56px;
-  max-width: 173px;
-  width: 100%;
+  width: fit-content;
+  min-width: 173px;
 
   font-weight: 500;
   font-size: 16px;
@@ -48,5 +48,13 @@
 
   .secondary:hover {
     border-color: var(--green-hover);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .linkButton {
+    min-height: 48px;
+    font-size: 15px;
+    padding: 0 24px;
   }
 }

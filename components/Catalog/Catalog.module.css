@@ -19,3 +19,63 @@
   text-align: center;
   color: var(--main);
 }
+
+.mobileFilterToggle.mobileFilterToggle {
+  display: none;
+}
+
+.backdrop {
+  display: none;
+}
+
+@media screen and (max-width: 1399px) {
+  .catalog {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .catalog {
+    padding: 24px 16px;
+  }
+
+  .mobileFilterToggle.mobileFilterToggle {
+    display: flex;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+
+    width: auto;
+    min-width: 130px;
+    transition: transform 0.1s ease;
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(16, 24, 40, 0.4);
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
+
+  .backdropOpen {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mobileFilterToggle:active {
+    transform: scale(0.95);
+  }
+}

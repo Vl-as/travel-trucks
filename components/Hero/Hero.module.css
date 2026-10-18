@@ -26,3 +26,34 @@
   line-height: 1.33;
   color: var(--inputs);
 }
+
+@media (max-width: 1199px) {
+  .hero {
+    padding-top: 220px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 180px;
+    padding-bottom: 60px;
+    background-position: 70% center;
+    min-height: 100svh;
+  }
+
+  .title {
+    margin-bottom: 12px;
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    margin-bottom: 32px;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+}

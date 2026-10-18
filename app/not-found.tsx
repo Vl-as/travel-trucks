@@ -13,8 +13,14 @@ function NotFoundPage() {
           title="Page not found"
         >
           <div className={css.links}>
-            <LinkButton href="/">Go to home page</LinkButton>
-            <LinkButton variant="secondary" href="/catalog">
+            <LinkButton className={css.linkBtn} href="/">
+              Go to home page
+            </LinkButton>
+            <LinkButton
+              className={css.linkBtn}
+              variant="secondary"
+              href="/catalog"
+            >
               Explore campers
             </LinkButton>
           </div>

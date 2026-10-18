@@ -14,10 +14,14 @@ const navItems = [
   { label: 'Catalog', href: '/catalog' },
 ];
 
-function Navbar() {
+interface NavbarProps{
+  className?: string;
+}
+
+function Navbar({className}: NavbarProps) {
   const path = usePathname();
   return (
-    <nav className={css.nav}>
+    <nav className={clsx(css.nav, className)}>
       <ul className={css.navList}>
         {navItems.map(({ label, href }) => (
           <li key={href}>

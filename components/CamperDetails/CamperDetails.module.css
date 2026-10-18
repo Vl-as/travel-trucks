@@ -43,3 +43,25 @@
 .specificationValue::first-letter {
   text-transform: uppercase;
 }
+
+@media screen and (max-width: 767px) {
+  .card {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .specification {
+    font-size: 14px;
+    gap: 8px;
+  }
+}

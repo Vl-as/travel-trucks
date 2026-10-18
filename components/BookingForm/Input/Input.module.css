@@ -91,3 +91,42 @@
     border-color: var(--green-hover);
   }
 }
+
+@media screen and (max-width: 767px) {
+  .input {
+    min-height: 52px;
+    padding-inline: 16px;
+  }
+
+  .errorIcon {
+    right: 16px;
+  }
+
+  .errorLabel {
+    left: 16px;
+  }
+
+  .error {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .input {
+    min-height: 48px;
+    font-size: 15px;
+    padding-inline: 14px;
+  }
+
+  .errorIcon {
+    right: 14px;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .errorLabel {
+    left: 14px;
+    font-size: 11px;
+    padding: 0 6px;
+  }
+}

@@ -49,7 +49,15 @@ function Gallery({ gallery, name, className }: GalleryProps) {
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
-        spaceBetween={32}
+        spaceBetween={12}
+        breakpoints={{
+          767: {
+            spaceBetween: 20,
+          },
+          1023: {
+            spaceBetween: 32,
+          },
+        }}
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}

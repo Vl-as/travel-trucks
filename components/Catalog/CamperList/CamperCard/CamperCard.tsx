@@ -47,13 +47,23 @@ function CamperCard({ camper, index }: CamperCardProps) {
         <ul className={css.features}>
           {features.map(({ icon, value, id }) => (
             <Feature key={id}>
-              <Icon aria-hidden="true" width={20} height={20} name={icon} />
+              <Icon
+                className={css.icon}
+                aria-hidden="true"
+                width={20}
+                height={20}
+                name={icon}
+              />
               {value}
             </Feature>
           ))}
         </ul>
 
-        <LinkButton href={`/catalog/${camper.id}`} target="_blank">
+        <LinkButton
+          className={css.link}
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+        >
           Show more
         </LinkButton>
       </div>

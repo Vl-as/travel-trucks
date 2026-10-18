@@ -10,7 +10,7 @@ function Header() {
       <Container className={css.container}>
         <Logo />
         <Suspense>
-          <Navbar />
+          <Navbar className={css.nav} />
         </Suspense>
       </Container>
     </header>

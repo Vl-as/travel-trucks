@@ -83,7 +83,7 @@ function BookingForm({ camperId, className }: BookingFormProps) {
             <Input type="text" name="name" placeholder="Name*" />
             <Input type="email" name="email" placeholder="Email*" />
           </div>
-          <Button type="submit" disabled={isPending}>
+          <Button className={css.button} type="submit" disabled={isPending}>
             {isPending ? (
               <>
                 Sending

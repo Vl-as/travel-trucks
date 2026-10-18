@@ -15,7 +15,7 @@ function NotFound({ children, title, imgClass, titleClass }: NotFoundProps) {
     <div className={css.container}>
       <Image
         className={clsx(css.image, imgClass)}
-        src="/not-found.png"
+        src="/not-found.webp"
         alt={title}
         width={488}
         height={463}
