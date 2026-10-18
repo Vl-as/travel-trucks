@@ -45,7 +45,7 @@
   right: 18px;
   transform: translateY(-50%);
 
-  fill: var(--error);
+  color: var(--error);
 
   visibility: hidden;
   pointer-events: none;
