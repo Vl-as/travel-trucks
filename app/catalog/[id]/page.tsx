@@ -26,7 +26,7 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${camper.name} — Rent for €${camper.price}/day`;
+  const title = `${camper.name} — Rent for €${camper.price}`;
   const description =
     camper.description.length > 150
       ? `${camper.description.slice(0, 150)}...`
