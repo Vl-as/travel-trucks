@@ -13,6 +13,7 @@ import Toast from '../Toast/Toast';
 
 const validationSchema = Yup.object({
   name: Yup.string()
+    .trim()
     .required('Please enter your full name.')
     .min(4, 'Full name must be at least 4 characters long.')
     .max(60, 'Full name cannot exceed 60 characters.')
@@ -21,6 +22,7 @@ const validationSchema = Yup.object({
       'Please enter your full name (first and last name).'
     ),
   email: Yup.string()
+    .trim()
     .email('Please enter a valid email address.')
     .required('Please enter your email.'),
 });
