@@ -62,13 +62,14 @@ export async function generateMetadata({
 
 async function CamperPage({ params }: CamperPageProps) {
   const { id } = await params;
-  const camper = await getSingleCamper(id);
+  const [camper, reviews] = await Promise.all([
+    getSingleCamper(id),
+    getCamperReviews(id),
+  ]);
 
   if (!camper) {
     notFound();
   }
-
-  const reviews = await getCamperReviews(id);
 
   return (
     <main className={css.page}>
